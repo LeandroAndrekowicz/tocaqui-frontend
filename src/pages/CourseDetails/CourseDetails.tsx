@@ -71,7 +71,7 @@ function CourseDetails() {
             const apiUrl = import.meta.env.VITE_API_URL;
 
             try {
-                const response = await fetch(`${apiUrl}/api/courses/find-by/${id}`);
+                const response = await fetch(`${apiUrl}/courses/find-by/${id}`);
                 if (!response.ok) {
                     const errorData = await response.json();
                     toast.error(errorData.message || "Erro ao buscar curso");
@@ -121,7 +121,7 @@ function CourseDetails() {
         }
 
         try {
-            const response = await fetch(`${apiUrl}/api/lesson/create`, {
+            const response = await fetch(`${apiUrl}/lesson/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

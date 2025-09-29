@@ -32,7 +32,7 @@ function RegisterConfirmationPage() {
 	const onSubmit = async (data: ConfirmationForm) => {
 		try {
 			const apiUrl = import.meta.env.VITE_API_URL;
-			const response = await fetch(`${apiUrl}/api/person/activate-account`, {
+			const response = await fetch(`${apiUrl}/person/activate-account`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({

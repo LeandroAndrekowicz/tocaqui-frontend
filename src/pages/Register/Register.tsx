@@ -52,7 +52,7 @@ function RegisterPage() {
     const onSubmit = async (data: RegisterForm) => {
         try {
             const apiUrl = import.meta.env.VITE_API_URL;
-            const response = await fetch(`${apiUrl}/api/person/create-account`, {
+            const response = await fetch(`${apiUrl}/person/create-account`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

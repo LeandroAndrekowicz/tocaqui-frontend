@@ -28,7 +28,7 @@ const StatusModal: React.FC<StatusModalProps> = ({ isOpen, onClose, course, less
         const apiUrl = import.meta.env.VITE_API_URL;
         
         try {
-            const response = await fetch(`${apiUrl}/api/lesson/update-status`, {
+            const response = await fetch(`${apiUrl}/lesson/update-status`, {
                 method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${token}`,

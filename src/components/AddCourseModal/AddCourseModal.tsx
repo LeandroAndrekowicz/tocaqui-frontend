@@ -34,7 +34,7 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
 
         const fetchDays = async () => {
             try {
-                const res = await fetch(`${apiUrl}/api/disponible-days/find`, {
+                const res = await fetch(`${apiUrl}/disponible-days/find`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -49,7 +49,7 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
 
         const fetchCategories = async () => {
             try {
-                const res = await fetch(`${apiUrl}/api/categories/find-all`, {
+                const res = await fetch(`${apiUrl}/categories/find-all`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -101,7 +101,7 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
                 disponibleDays: selectedDays
             };
 
-            const response = await fetch(`${apiUrl}/api/courses/create`, {
+            const response = await fetch(`${apiUrl}/courses/create`, {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${token}`,
