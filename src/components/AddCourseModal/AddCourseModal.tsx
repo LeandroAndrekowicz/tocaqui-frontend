@@ -25,13 +25,16 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
     const [selectedDays, setSelectedDays] = useState<string[]>([]);
     const [loadingDays, setLoadingDays] = useState(true);
     const [loadingCategories, setLoadingCategories] = useState(true);
+    const apiUrl = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
         if (!isOpen) return;
+        const apiUrl = import.meta.env.VITE_API_URL;
+
 
         const fetchDays = async () => {
             try {
-                const res = await fetch('/api/disponible-days/find', {
+                const res = await fetch(`${apiUrl}/api/disponible-days/find`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -46,7 +49,7 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
 
         const fetchCategories = async () => {
             try {
-                const res = await fetch('/api/categories/find-all', {
+                const res = await fetch(`${apiUrl}/api/categories/find-all`, {
                     headers: { "Authorization": `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -98,7 +101,7 @@ export default function AddCourseModal({ isOpen, onClose, token, userId, onCours
                 disponibleDays: selectedDays
             };
 
-            const response = await fetch('/api/courses/create', {
+            const response = await fetch(`${apiUrl}/api/courses/create`, {
                 method: 'POST',
                 headers: {
                     "Authorization": `Bearer ${token}`,

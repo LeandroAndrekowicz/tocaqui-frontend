@@ -37,8 +37,10 @@ function HomePage() {
 
     useEffect(() => {
         async function fetchCourses() {
+            const apiUrl = import.meta.env.VITE_API_URL;
+
             try {
-                const response = await fetch("/api/courses/find-all", { method: "GET" });
+                const response = await fetch(`${apiUrl}/api/courses/find-all`, { method: "GET" });
 
                 if (!response.ok) {
                     let errorMessage = "Erro ao buscar cursos";

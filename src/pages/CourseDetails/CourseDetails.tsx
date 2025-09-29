@@ -49,6 +49,7 @@ interface JwtPayload {
 
 function getUserIdFromToken(): number | null {
     const token = localStorage.getItem('token');
+
     if (!token) return null;
 
     try {
@@ -67,8 +68,10 @@ function CourseDetails() {
 
     useEffect(() => {
         async function fetchCourse() {
+            const apiUrl = import.meta.env.VITE_API_URL;
+
             try {
-                const response = await fetch(`/api/courses/find-by/${id}`);
+                const response = await fetch(`${apiUrl}/api/courses/find-by/${id}`);
                 if (!response.ok) {
                     const errorData = await response.json();
                     toast.error(errorData.message || "Erro ao buscar curso");
@@ -109,14 +112,16 @@ function CourseDetails() {
     });
 
     const handleConfirmLesson = async (days: string[]) => {
+        const apiUrl = import.meta.env.VITE_API_URL;
         const studentId = getUserIdFromToken();
+
         if (!studentId) {
             toast.warn("Você precisa estar logado para contratar um curso");
             return;
         }
 
         try {
-            const response = await fetch('/api/lesson/create', {
+            const response = await fetch(`${apiUrl}/api/lesson/create`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

@@ -25,8 +25,10 @@ const StatusModal: React.FC<StatusModalProps> = ({ isOpen, onClose, course, less
     if (!isOpen || !course || !lessonId) return null;
 
     const handleStatusChange = async (newStatus: LessonStatusEnum) => {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        
         try {
-            const response = await fetch(`/api/lesson/update-status`, {
+            const response = await fetch(`${apiUrl}/api/lesson/update-status`, {
                 method: "PATCH",
                 headers: {
                     "Authorization": `Bearer ${token}`,

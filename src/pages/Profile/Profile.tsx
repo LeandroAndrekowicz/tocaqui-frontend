@@ -91,7 +91,8 @@ function ProfilePage() {
 
         // Buscar usuário
         try {
-            const response = await fetch(`/api/person/find-by/${decodedId}`, {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const response = await fetch(`${apiUrl}/api/person/find-by/${decodedId}`, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -111,14 +112,13 @@ function ProfilePage() {
 
         // Buscar aulas/cursos
         try {
-            const response = await fetch(
-                `/api/lessons/find-by?personId=${decodedId}&role=${userRole}`,
-                {
-                    headers: {
-                        "Authorization": `Bearer ${token}`,
-                        "Content-Type": "application/json"
-                    }
+            const apiUrl = import.meta.env.VITE_API_URL;
+            const response = await fetch(`${apiUrl}/api/lessons/find-by?personId=${decodedId}&role=${userRole}`, {
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
                 }
+            }
             );
 
             const data: LessonsResponse = await response.json();
